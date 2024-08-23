@@ -9,7 +9,6 @@
 A FREE digital clock that displays the current time and date, created using HTML, CSS, and JavaScript. This animated clock is perfect for integrating into websites, web applications, or as a standalone widget.
 
 ## Features
-
 - **Real-time digital clock:** Continuously updates to show the current time.
 - **Date display:** Shows the current date alongside the time.
 - **Smooth animations:** Visually appealing transitions for time changes.
