@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock with Date and Day</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .clock-container {
+            background: linear-gradient(45deg, #761ec9, #33189d);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 240px;
+            height: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+        .clock-display {
+            font-size: 1.8em;
+            color: #fff;
+            text-align: center;
+            transition: transform 0.5s ease-in-out;
+            font-family: sans-serif;
+            font-weight: 700;
+            width: 100%;
+            height: 210px; /* 70px * 3 for 3 items */
+        }
+        .time, .date, .day {
+            width: 100%;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock-container">
+        <div class="clock-display">
+            <div class="time">Loading Time...</div> 
+            <div class="date">Loading Date...</div> 
+            <div class="day">Loading Day...</div>  
+        </div>
+    </div>
+    <script>
+        const timeElement = document.querySelector('.time');
+        const dateElement = document.querySelector('.date');
+        const dayElement = document.querySelector('.day');
+        const clockDisplay = document.querySelector('.clock-display');
+        let displayMode = 0;
+
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            });
+            const dateString = now.toLocaleDateString('en-US', {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric'
+            });
+            const dayString = now.toLocaleDateString('en-US', {
+                weekday: 'long'
+            });
+            timeElement.textContent = timeString;
+            dateElement.textContent = dateString;
+            dayElement.textContent = dayString;
+        }
+
+        function toggleDisplay() {
+            displayMode = (displayMode + 1) % 3;
+            clockDisplay.style.transform = `translateY(-${displayMode * 70}px)`;
+        }
+
+        setInterval(updateClock, 1000);
+        setInterval(toggleDisplay, 5000);
+        updateClock();  // Initial update
+    </script>
+</body>
+</html>
